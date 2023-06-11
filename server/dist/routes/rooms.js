@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var auth_1 = __importDefault(require("../middleware/auth"));
 var RoomController_1 = __importDefault(require("../controllers/http/RoomController"));
-var router = (0, express_1.Router)();
+var router = express_1.Router();
 router.use(auth_1.default);
 router.post("/create", RoomController_1.default.create);
 router.post("/:id/join", RoomController_1.default.join);

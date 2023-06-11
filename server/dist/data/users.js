@@ -94,10 +94,10 @@ exports.getSocketByUUID = getSocketByUUID;
  * @return {string, string, string} User's uuid, username, and avatar
  */
 function createUser(socket) {
-    var uuid = (0, lodash_1.uniqueId)();
-    var username = (0, trash_username_generator_1.default)();
-    var avatarList = (0, fs_1.readdirSync)("dist/public/assets/avatars");
-    var avatar = "https://pepeserver-2zjemde1b-wrathofrathma.vercel.app/assets/avatars/".concat(avatarList[Math.floor(Math.random() * avatarList.length)]);
+    var uuid = lodash_1.uniqueId();
+    var username = trash_username_generator_1.default();
+    var avatarList = fs_1.readdirSync("public/assets/avatars");
+    var avatar = "http://localhost:4000/assets/avatars/" + avatarList[Math.floor(Math.random() * avatarList.length)];
     users[uuid] = {
         username: username,
         dead: false,
@@ -121,7 +121,7 @@ function destroyUser(uuid) {
 }
 exports.destroyUser = destroyUser;
 function rerollUsername(uuid) {
-    var username = (0, trash_username_generator_1.default)();
+    var username = trash_username_generator_1.default();
     users[uuid].username = username;
     var sock = getSocketByUUID(uuid);
     publishUserIndex();

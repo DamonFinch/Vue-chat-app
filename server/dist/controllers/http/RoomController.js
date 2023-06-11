@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+        while (_) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -65,7 +65,7 @@ var RoomController = {
                         return [4 /*yield*/, argon2_1.default.hash(password)];
                     case 1:
                         encrypted_password = _b.sent();
-                        room = (0, rooms_1.createRoom)(entry, encrypted_password);
+                        room = rooms_1.createRoom(entry, encrypted_password);
                         // Send the user back the new successful room
                         res.send(room);
                         return [2 /*return*/];
@@ -107,7 +107,7 @@ var RoomController = {
                         // 1. Add our user to the users in the chatroom
                         rooms_1.rooms[id].users.push(uuid);
                         // 3. Send the status back that we've joined successfully
-                        (0, rooms_1.joinRoom)(id, (0, subscribers_1.getSubscriber)(uuid));
+                        rooms_1.joinRoom(id, subscribers_1.getSubscriber(uuid));
                         res.sendStatus(200);
                         return [2 /*return*/];
                 }
@@ -125,7 +125,7 @@ var RoomController = {
             return;
         }
         // Remove the user and tell them it worked out.
-        (0, rooms_1.leaveRoom)(id, (0, subscribers_1.getSubscriber)(uuid));
+        rooms_1.leaveRoom(id, subscribers_1.getSubscriber(uuid));
         res.sendStatus(200);
     }
 };

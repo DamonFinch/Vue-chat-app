@@ -65,26 +65,26 @@ var WebSocketController = {
     },
     createRoomMessage: function (sock, payload) {
         // We need to send the message to all the users subscribed to the channel.
-        var user = (0, users_2.getUUIDBySocket)(sock);
+        var user = users_2.getUUIDBySocket(sock);
         if (!user) {
             console.error("[createRoomMessage] Invalid user");
             return;
         }
-        (0, rooms_1.publishMessage)(user, payload);
+        rooms_1.publishMessage(user, payload);
     },
     setStreamState: function (sock, payload) {
         var room = payload.room, state = payload.state;
-        var uuid = (0, users_2.getUUIDBySocket)(sock);
+        var uuid = users_2.getUUIDBySocket(sock);
         if (!uuid || !state || !room)
             return;
-        (0, rooms_1.setUserStreamState)(room, uuid, state);
+        rooms_1.setUserStreamState(room, uuid, state);
     },
     setStreams: function (sock, payload) {
         var room = payload.room, streams = payload.streams;
-        var uuid = (0, users_2.getUUIDBySocket)(sock);
+        var uuid = users_2.getUUIDBySocket(sock);
         if (!uuid || !streams || !room)
             return;
-        (0, rooms_1.setUserStreams)(room, uuid, streams);
+        rooms_1.setUserStreams(room, uuid, streams);
     },
     // Router for user-generated messages
     messageRouter: function (message) {
@@ -104,23 +104,23 @@ var WebSocketController = {
             WebSocketController.setStreams(this, payload);
         }
         else if (event === "rtc/offer") {
-            var ts = (0, users_1.getSocketByUUID)(payload.target);
+            var ts = users_1.getSocketByUUID(payload.target);
             ts === null || ts === void 0 ? void 0 : ts.send(message);
         }
         else if (event === "rtc/answer") {
-            var ts = (0, users_1.getSocketByUUID)(payload.target);
+            var ts = users_1.getSocketByUUID(payload.target);
             ts === null || ts === void 0 ? void 0 : ts.send(message);
         }
         else if (event === "rtc/icecandidate") {
-            var ts = (0, users_1.getSocketByUUID)(payload.target);
+            var ts = users_1.getSocketByUUID(payload.target);
             ts === null || ts === void 0 ? void 0 : ts.send(message);
         }
         else if (event === "rtc/renegotiation") {
-            var ts = (0, users_1.getSocketByUUID)(payload.target);
+            var ts = users_1.getSocketByUUID(payload.target);
             ts === null || ts === void 0 ? void 0 : ts.send(message);
         }
         else if (event === "rtc/answerrenegotiation") {
-            var ts = (0, users_1.getSocketByUUID)(payload.target);
+            var ts = users_1.getSocketByUUID(payload.target);
             ts === null || ts === void 0 ? void 0 : ts.send(message);
         }
     }

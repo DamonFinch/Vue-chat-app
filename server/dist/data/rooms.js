@@ -171,7 +171,7 @@ exports.unsubscribeAll = unsubscribeAll;
  */
 function createRoom(entry, password) {
     // Create a new room with a unique ID, so we don't have any conflicts in room addresses
-    var id = (0, lodash_1.uniqueId)();
+    var id = lodash_1.uniqueId();
     exports.rooms[id] = entry;
     // Track the password if it exist
     if (password)
@@ -251,7 +251,7 @@ function joinRoom(roomId, subscriber) {
                 continue;
             // For every user already in the room
             // Get their socket and tell them to initiate contact with the new subscriber
-            var sock = (0, users_1.getSocketByUUID)(user);
+            var sock = users_1.getSocketByUUID(user);
             sock === null || sock === void 0 ? void 0 : sock.send(JSON.stringify({
                 event: "rtc/init",
                 payload: {
@@ -337,7 +337,7 @@ function publishMessage(uuid, payload) {
         return;
     // Create message
     var message = {
-        uuid: (0, lodash_1.uniqueId)(),
+        uuid: lodash_1.uniqueId(),
         userId: uuid,
         contents: payload.message,
         timestamp: Date.now()
@@ -350,7 +350,7 @@ function publishMessage(uuid, payload) {
         // publish it to users in the channel
         for (var _b = __values(exports.rooms[payload.roomId].users), _c = _b.next(); !_c.done; _c = _b.next()) {
             var userId = _c.value;
-            var socket = (0, users_1.getSocketByUUID)(userId);
+            var socket = users_1.getSocketByUUID(userId);
             if (!socket)
                 continue;
             WebSocketController_1.default.emitRoomMessage(socket, payload.roomId, message);

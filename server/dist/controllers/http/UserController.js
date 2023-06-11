@@ -4,8 +4,8 @@ var fs_1 = require("fs");
 var users_1 = require("../../data/users");
 var UserController = {
     avatarIndex: function (req, res) {
-        var avatarList = (0, fs_1.readdirSync)("dist/public/assets/avatars").map(function (val) {
-            return "https://pepeserver-2zjemde1b-wrathofrathma.vercel.app/assets/avatars/".concat(val);
+        var avatarList = fs_1.readdirSync("public/assets/avatars").map(function (val) {
+            return "http://localhost:4000/assets/avatars/" + val;
         });
         res.send({
             avatars: avatarList
@@ -18,12 +18,12 @@ var UserController = {
             res.sendStatus(404);
             return;
         }
-        (0, users_1.updateAvatar)(uuid, url);
+        users_1.updateAvatar(uuid, url);
         res.sendStatus(200);
     },
     rerollUsername: function (req, res) {
         var uuid = req.uuid;
-        var username = (0, users_1.rerollUsername)(uuid);
+        var username = users_1.rerollUsername(uuid);
         res.status(200).send({ username: username });
     }
 };

@@ -12,7 +12,7 @@ var rooms_2 = require("./data/rooms");
 var WebSocketController_1 = __importDefault(require("./controllers/ws/WebSocketController"));
 var server = new ws_1.default.Server({ noServer: true });
 server.on('connection', function (sock, req) {
-    var _a = (0, users_1.createUser)(sock), uuid = _a.uuid, username = _a.username, avatar = _a.avatar;
+    var _a = users_1.createUser(sock), uuid = _a.uuid, username = _a.username, avatar = _a.avatar;
     sock.on("message", WebSocketController_1.default.messageRouter);
     // Send the user their auth token to match their UUIDs.
     var token = jsonwebtoken_1.default.sign({ data: { uuid: uuid } }, auth_1.signature, { expiresIn: "6h" });
@@ -22,18 +22,18 @@ server.on('connection', function (sock, req) {
     // Send them the current room list
     WebSocketController_1.default.emitRoomIndex(sock, rooms_1.rooms);
     // Default user subscriptions
-    (0, rooms_2.subscribe)("index", { socket: sock, uuid: uuid });
+    rooms_2.subscribe("index", { socket: sock, uuid: uuid });
     var keepAlive = setInterval(function () {
         sock.send(JSON.stringify({ event: "ping" }));
     }, 30 * 1000);
     // When the socket closes, we want to remove them from the user entry list.
     sock.on('close', function () {
         // Unsubscribe from all room related stuff
-        (0, rooms_2.unsubscribeAll)({ uuid: uuid, socket: sock });
+        rooms_2.unsubscribeAll({ uuid: uuid, socket: sock });
         // Remove the user from all rooms
-        (0, rooms_2.leaveAll)({ uuid: uuid, socket: sock });
+        rooms_2.leaveAll({ uuid: uuid, socket: sock });
         // Remove the user from the users list
-        (0, users_1.destroyUser)(uuid);
+        users_1.destroyUser(uuid);
         // Clear the keepalive pings
         clearInterval(keepAlive);
     });

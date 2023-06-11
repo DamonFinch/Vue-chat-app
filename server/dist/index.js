@@ -8,15 +8,15 @@ var websocket_1 = __importDefault(require("./websocket"));
 var rooms_1 = __importDefault(require("./routes/rooms"));
 var users_1 = __importDefault(require("./routes/users"));
 var cors_1 = __importDefault(require("cors"));
-var app = (0, express_1.default)();
-var port = process.env.PORT || 3000;
-app.use((0, cors_1.default)());
+var app = express_1.default();
+var port = process.env.PORT || 4000;
+app.use(cors_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.static("public"));
 app.use("/room", rooms_1.default);
 app.use("/user", users_1.default);
 var server = app.listen(port, function () {
-    console.log("PepeChat listening at http://localhost:".concat(port));
+    console.log("PepeChat listening at http://localhost:" + port);
 });
 server.on('upgrade', function (req, socket, head) {
     websocket_1.default.handleUpgrade(req, socket, head, function (socket) {
