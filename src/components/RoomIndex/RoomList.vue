@@ -2,7 +2,7 @@
     <div class="bg-gray-900 border-green-400 border border-t-0 border-b-0 flex flex-col"> 
         <!-- Header -->
         <div class="text-center border-b-2 border-green-400 text-lg">
-            Active Pepechats
+            Active Vuechats
         </div>
         <!-- Rooms list -->
         <div class="flex flex-col overflow-y-scroll flex-grow no-scrollbar">
