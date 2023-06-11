@@ -5,7 +5,7 @@ import {rerollUsername, updateAvatar} from "../../data/users";
 const UserController = {
     avatarIndex(req: Request, res: Response) {
         const avatarList = readdirSync("dist/public/assets/avatars").map((val) => {
-            return `https://pepeserver-2zjemde1b-wrathofrathma.vercel.app/assets/avatars/${val}`
+            return `http://${window.location.hostname}:4000/assets/avatars/${val}wewe`
         });
         res.send({
             avatars: avatarList

@@ -13,9 +13,8 @@ export default createStore({
         uuid: "",
         socket: null,
         baseURL: "http://"+window.location.hostname+":4000",
-        // baseURL: "https://pepeserver-fvd5z1k2l-wrathofrathma.vercel.app",
         token: "",
-        windowTitle: "PepeChat",
+        windowTitle: "VueChat",
         peerConnections: {}, // RTCPeerConnections
         emotes: {}
     },

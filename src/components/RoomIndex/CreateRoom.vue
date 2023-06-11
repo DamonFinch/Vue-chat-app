@@ -66,7 +66,7 @@
             class="bg-gray-700 rounded-md p-2 pt-1 pb-1 text-blue-300 filter hover:brightness-125"
             @click="callCreateRoom"
             >
-                Chat with some pepegas
+                Chat with some guys
             </v-button>
         </div>
     </div>

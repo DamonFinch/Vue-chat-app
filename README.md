@@ -5,7 +5,7 @@ This is a meme project I build to relearn WebRTC properly and just because I enj
 Don't expect this to be done entirely well since this project was me *learning the ropes* for this kind of project. I have some ideas for future projects based on a lot of the concepts I learned here.
 
 ## What is Chat-app?
-Chat-app is a meme flavored VoIP project centered around pepe the frog. There's no persistent storage, or account registration, just create public/private rooms to voice/video call & share your screen if that's your fancy.
+Chat-app is a meme flavored VoIP project. There's no persistent storage, or account registration, just create public/private rooms to voice/video call & share your screen if that's your fancy.
 
 
 ## Features

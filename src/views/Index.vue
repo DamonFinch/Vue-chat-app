@@ -14,5 +14,5 @@ import {useStore} from "vuex";
 
 const store = useStore();
 
-store.commit("setWindowTitle", "PepeChat")
+store.commit("setWindowTitle", "VueChat")
 </script>

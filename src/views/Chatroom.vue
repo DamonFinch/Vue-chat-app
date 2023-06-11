@@ -37,7 +37,7 @@ watchEffect(() => {
 })
 
 watchEffect(() => {
-    store.commit("setWindowTitle", `PepeChat - #${roomName.value}`);
+    store.commit("setWindowTitle", `VueChat - #${roomName.value}`);
 })
 
 onBeforeRouteLeave(async () => {
